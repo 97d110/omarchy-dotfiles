@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Edit .bashrc
+GenericName=bashme
+Comment=Open ~/.bashrc in Zed
+Exec=/home/bebskihome/.local/bin/zed /home/bebskihome/.bashrc
+Icon=zed
+Terminal=false
+Categories=Utility;TextEditor;
+StartupNotify=true
