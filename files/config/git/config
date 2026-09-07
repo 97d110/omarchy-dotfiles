@@ -31,11 +31,11 @@
 [user]
 	name = 97d110
 	email = 68594063+97d110@users.noreply.github.com
-	signingkey = /home/bebskihome/.ssh/id_ed25519_github.pub
+	signingkey = /home/bebskigo/.ssh/id_ed25519_github.pub
 [gpg]
 	format = ssh
 [gpg "ssh"]
-	allowedSignersFile = /home/bebskihome/.ssh/allowed_signers
+	allowedSignersFile = /home/bebskigo/.ssh/allowed_signers
 [transfer]
 	fsckObjects = true
 [fetch]
@@ -48,7 +48,7 @@
 	sshCommand = ssh -i ~/.ssh/id_ed25519_github -o IdentitiesOnly=yes
 [credential "https://github.com"]
 	helper = 
-	helper = !/home/bebskihome/.local/share/mise/installs/gh/2.100.0/gh_2.100.0_linux_amd64/bin/gh auth git-credential
+	helper = !/home/bebskigo/.local/share/mise/installs/gh/2.100.0/gh_2.100.0_linux_amd64/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/home/bebskihome/.local/share/mise/installs/gh/2.100.0/gh_2.100.0_linux_amd64/bin/gh auth git-credential
+	helper = !/home/bebskigo/.local/share/mise/installs/gh/2.100.0/gh_2.100.0_linux_amd64/bin/gh auth git-credential

@@ -1,1 +1,5 @@
-amitnino@gmail.com namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL2+P15hKYeOT+iCSYcotKioVtuE0GMzRNv3e136fUAF amitnino@gmail.com
+# bebski-go (this machine) - git signs commits as the noreply address, so it
+# must appear as a principal for local `--show-signature` verification.
+68594063+97d110@users.noreply.github.com,amitnino@gmail.com namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPR89RGfsGkDd/YFO2G3OIPqFaLNhIsfoWEbdSS9ITcJ
+# bebski-home (other machine) - kept so signatures made there still verify here.
+amitnino@gmail.com namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL2+P15hKYeOT+iCSYcotKioVtuE0GMzRNv3e136fUAF
