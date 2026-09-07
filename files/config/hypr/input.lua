@@ -7,7 +7,10 @@
 -- (e.g. what's bound to SUPER + T now fires from the physical Alt key).
 hl.config({
   input = {
-    kb_options = "compose:caps,shift:both_capslock_cancel,altwin:swap_alt_win",
+    -- Use multiple keyboard layouts (English + Hebrew) and switch between
+    -- them with Ctrl + Space.
+    kb_layout = "us,il",
+    kb_options = "compose:caps,shift:both_capslock_cancel,altwin:swap_alt_win,grp:ctrl_space_toggle",
   },
 })
 
@@ -15,10 +18,6 @@ hl.config({
 -- See https://wiki.hypr.land/Configuring/Basics/Variables/#input
 -- hl.config({
 --   input = {
---     -- Use multiple keyboard layouts and switch between them with Left Alt + Right Alt.
---     kb_layout = "us,dk,eu",
---     kb_options = "compose:caps,shift:both_capslock_cancel,grp:alts_toggle",
---
 --     -- Use a specific keyboard variant if needed (e.g. intl for international keyboards).
 --     kb_variant = "intl",
 --
