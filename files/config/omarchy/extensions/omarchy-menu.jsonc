@@ -28,5 +28,5 @@
   // fields are kept unless overridden.
   // "about": {"icon":"","label":"About","action":"omarchy-launch-or-focus-tui \"zsh -c 'fastfetch; read -k 1'\""},
 
-  "bashme": {"icon":"󰆍","label":"Edit .bashrc","description":"Open ~/.bashrc in Zed","aliases":["bashrc"],"action":"uwsm-app -- /home/bebskihome/.local/bin/zed /home/bebskihome/.bashrc"}
+  "bashme": {"icon":"󰆍","label":"Edit .bashrc","description":"Open ~/.bashrc in Zed","aliases":["bashrc"],"action":"uwsm-app -- zed $HOME/.bashrc"}
 }

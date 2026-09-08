@@ -11,6 +11,13 @@ hl.config({
     -- them with Ctrl + Space.
     kb_layout = "us,il",
     kb_options = "compose:caps,shift:both_capslock_cancel,altwin:swap_alt_win,grp:ctrl_space_toggle",
+
+    touchpad = {
+      -- Invert trackpad scrolling to macOS-style "natural" scrolling: a
+      -- two-finger swipe moves the content, not the viewport. Pairs with the
+      -- Mac-style Alt/Super swap above.
+      natural_scroll = true,
+    },
   },
 })
 
