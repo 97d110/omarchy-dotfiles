@@ -8,9 +8,13 @@
 set -euo pipefail
 
 if [ "$(hostname)" != "bebski-home" ]; then
+  echo "not bebski-home - skipping personal-configurations deploy service"
   exit 0
 fi
 
-systemctl --user daemon-reload
-systemctl --user enable personal-configurations-deploy.service
-echo "personal-configurations-deploy.service enabled (not started yet — see comment above)"
+if systemctl --user daemon-reload && systemctl --user enable personal-configurations-deploy.service; then
+  echo "personal-configurations-deploy.service enabled (not started yet — see comment above)"
+else
+  echo "FAILED to enable personal-configurations-deploy.service - see systemctl output above" >&2
+  exit 1
+fi
