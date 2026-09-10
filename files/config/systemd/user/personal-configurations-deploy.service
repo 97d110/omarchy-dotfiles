@@ -2,6 +2,14 @@
 Description=Poll personal-configurations tags and redeploy on change
 
 [Service]
+# Explicit PATH, not inherited: this unit can start very early at boot
+# (WantedBy=default.target, no ordering dependency), before environment.d's
+# PATH additions land in the user manager's environment - confirmed via
+# /proc/<pid>/environ showing a bare PATH=/usr/local/bin:/usr/bin at
+# startup. gh (needed by git's credential.helper for this private repo)
+# lives under the mise shims dir, so without this the deploy loop can run
+# for the service's entire lifetime unable to authenticate to GitHub.
+Environment=PATH=%h/.local/share/mise/shims:/usr/local/sbin:/usr/local/bin:/usr/bin:%h/.local/bin
 ExecStart=%h/Work/personal-configurations/deploy/poll-and-deploy.sh
 Restart=always
 RestartSec=3
