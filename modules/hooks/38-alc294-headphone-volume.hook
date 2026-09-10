@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Installed into ~/.config/omarchy/hooks/post-boot.d/ by
+# modules/38-alc294-headphone-volume.sh. `omarchy hook install` copies this
+# file verbatim, so it can't carry modules/lib/hardware.sh along with it -
+# it stays a thin pointer back into the repo checkout instead of
+# duplicating the fix logic.
+exec "$HOME/Work/omarchy-dotfiles/modules/38-alc294-headphone-volume.sh"

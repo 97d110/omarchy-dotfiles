@@ -43,3 +43,12 @@ done
 if [ "$changed" -eq 0 ]; then
   echo "ALC294 headphone volume OK: Master/Headphone/Speaker at 100% unmuted"
 fi
+
+# The codec resets Headphone/Speaker to muted on every boot, so re-apply
+# this fix via a post-boot hook instead of relying on a manual ./install.sh
+# rerun after each reboot.
+HOOK_SRC="$(dirname "${BASH_SOURCE[0]}")/hooks/38-alc294-headphone-volume.hook"
+HOOK_DEST="$HOME/.config/omarchy/hooks/post-boot.d/$(basename "$HOOK_SRC")"
+if [[ ! -f $HOOK_DEST ]] || ! cmp -s "$HOOK_SRC" "$HOOK_DEST"; then
+  omarchy hook install post-boot "$HOOK_SRC"
+fi
