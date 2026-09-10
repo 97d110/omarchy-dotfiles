@@ -14,3 +14,8 @@ source "$OMARCHY_PATH/default/bash/rc"
 # alias p='python'
 alias c='clear && bash'
 alias bashme='zed ~/.bashrc'
+
+# Cuts the next personal-configurations release (bumps patch tag, pushes),
+# which is what bebski-home's poll-and-deploy.service reacts to. Works from
+# any directory - see personal-configurations/deploy/cut-release.sh.
+alias deploy-config='~/Work/personal-configurations/deploy/cut-release.sh'
