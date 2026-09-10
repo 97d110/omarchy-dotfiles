@@ -1,0 +1,10 @@
+[Unit]
+Description=Poll personal-configurations tags and redeploy on change
+
+[Service]
+ExecStart=%h/Work/personal-configurations/deploy/poll-and-deploy.sh
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target
