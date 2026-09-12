@@ -1,6 +1,6 @@
 ---
 name: omarchy-dotfiles
-description: Keep ~/Work/omarchy-dotfiles in sync whenever a persistent Omarchy/Hyprland/shell/git/ssh/gh config change is made on this machine. Use whenever editing files under ~/.config/hypr, ~/.config/omarchy, ~/.config/git, ~/.config/gh, ~/.bashrc, ~/.ssh (non-secret), ~/.local/share/applications, or running an imperative one-off setup command (systemctl enable, a CLI shim, a package install) that should survive a reinstall.
+description: Keep ~/Work/omarchy-dotfiles in sync whenever a persistent Omarchy/Hyprland/shell/git/ssh/gh config change is made on this machine. Use whenever editing files under ~/.config/hypr, ~/.config/omarchy, ~/.config/git, ~/.config/gh, ~/.bashrc, ~/.ssh (non-secret), ~/.local/share/applications, ~/.claude/rules (always-on Claude Code rules), or running an imperative one-off setup command (systemctl enable, a CLI shim, a package install) that should survive a reinstall.
 ---
 
 # omarchy-dotfiles
@@ -34,6 +34,7 @@ leading dot stripped from the first segment:
 | `~/.config/X` | `files/config/X` |
 | `~/.local/Y` | `files/local/Y` |
 | `~/.ssh/Z` | `files/ssh/Z` |
+| `~/.claude/rules/X` | `files/home/.claude/rules/X` |
 | `~/.bashrc`, other `~/.foo` | `files/home/.foo` |
 
 ```bash

@@ -25,6 +25,21 @@ running numbered scripts via `run_logged`).
 Runs every `modules/*.sh` in order. Safe to rerun after every change, and
 on a fresh machine after cloning this repo.
 
+## Claude Code
+
+Two things here are registered globally, so every session on this machine picks
+them up — not only sessions opened inside this repo:
+
+- **The `omarchy-dotfiles` skill** — `modules/70-claude-integration.sh` links it
+  into `~/.claude/skills/` and points `~/.claude/CLAUDE.md` at this repo.
+- **Always-on rules** — `files/home/.claude/rules/*.md`, symlinked to
+  `~/.claude/rules/`, which Claude Code reads at the start of every session in
+  every project. `modules/71-claude-rules.sh` proves each one is live and clears
+  links left behind by a renamed rule.
+
+To add a rule, drop a numbered `NN-topic.md` into `files/home/.claude/rules/`
+and run `./install.sh`. There is nothing else to register.
+
 ## Adding a new piece of config
 
 - **A file** (new Hyprland setting, another dotfile): move the live file into
@@ -46,3 +61,5 @@ not just sessions opened inside this repo.
 - Private SSH key (`~/.ssh/id_ed25519_github`) — secret.
 - `~/.config/gh/hosts.yml` — holds the gh OAuth token.
 - `~/.ssh/known_hosts*` — machine noise, not authored config.
+- `~/.claude/CLAUDE.md` — machine-local; module 70 only appends a pointer to it.
+  Shared rules belong in `files/home/.claude/rules/` instead.
