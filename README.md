@@ -56,6 +56,32 @@ into `~/.claude/skills/` and points `~/.claude/CLAUDE.md` at this repo, so
 any Claude Code session on this machine follows this workflow automatically,
 not just sessions opened inside this repo.
 
+## Cross-repo services tracked here
+
+Some `modules/` entries exist only to register machine-level plumbing for a
+service whose actual logic lives in a different repo. Currently:
+
+- **`personal-configurations`'s tag-poll/redeploy loop** (`bebski-home`
+  only — the always-on deploy target, not this laptop). The poll script
+  itself (`deploy/poll-and-deploy.sh`) and the tag-cutting script
+  (`deploy/cut-release.sh`) live in that repo; see its `CLAUDE.md` ->
+  "Deploy mechanism" for the full pipeline. What's tracked here instead:
+  - `files/config/systemd/user/personal-configurations-deploy.service` —
+    the systemd **unit** (a thin `ExecStart` pointer at the script above,
+    no embedded poll logic), symlinked to `~/.config/systemd/user/` by
+    `modules/00-link-files.sh`.
+  - `modules/80-personal-configs-deploy.sh` — registers the unit
+    (`systemctl --user enable`) on `bebski-home` only; **does not start
+    it**. A one-time `systemctl --user start personal-configurations-deploy`
+    on `bebski-home` is required before any tag actually triggers a
+    redeploy — easy to forget, and it fails silently (no error, no Discord
+    message) if skipped.
+  - `modules/90-docker-boot-check.sh` — unrelated to the above directly,
+    but flags a docker-socket-activation issue that can make a redeploy
+    look like a no-op even when the poll loop itself is running correctly.
+  - `files/home/.bashrc` — the `deploy-config` alias for
+    `personal-configurations/deploy/cut-release.sh`.
+
 ## What's intentionally NOT tracked
 
 - Private SSH key (`~/.ssh/id_ed25519_github`) — secret.
