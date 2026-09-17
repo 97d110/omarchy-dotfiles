@@ -1,0 +1,21 @@
+#!/bin/bash
+# Run by Heroic as a game's beforeLaunchScriptPath (see GamesConfig/<appName>.json).
+#
+# Temporarily disables libinput's disable-while-typing (dwt) on the touchpad
+# for the duration of the game session, so touchpad camera-look keeps working
+# while WASD is held. This is a live-only override: it does not touch
+# ~/.config/hypr/input.lua, so a `hyprctl reload` (or just logging out) resets
+# dwt back to the file's default (enabled). heroic-game-end restores it
+# explicitly when the game exits.
+#
+# Heroic doesn't check this script's exit status, and it may run outside a
+# Hyprland session (e.g. via a non-Hyprland compositor or a headless test),
+# so every failure here is non-fatal.
+
+set -uo pipefail
+
+if command -v hyprctl >/dev/null 2>&1 && [ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]; then
+  hyprctl eval 'hl.config({input={touchpad={disable_while_typing=false}}})' >/dev/null 2>&1 || true
+fi
+
+exit 0
