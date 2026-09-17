@@ -1,8 +1,8 @@
 #!/bin/bash
 # Run by Heroic as a game's afterLaunchScriptPath (see GamesConfig/<appName>.json).
 #
-# Mirrors heroic-game-start: restores libinput's disable-while-typing (dwt) on
-# the touchpad to enabled (Hyprland's normal palm-rejection behavior) once the
+# Mirrors heroic-game-start: restores libinput's disable-while-typing (dwt) and
+# tap-to-click on the touchpad to enabled (Hyprland's normal behavior) once the
 # game exits. See heroic-game-start for the full rationale.
 #
 # Heroic doesn't check this script's exit status, and it may run outside a
@@ -11,7 +11,7 @@
 set -uo pipefail
 
 if command -v hyprctl >/dev/null 2>&1 && [ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]; then
-  hyprctl eval 'hl.config({input={touchpad={disable_while_typing=true}}})' >/dev/null 2>&1 || true
+  hyprctl eval 'hl.config({input={touchpad={disable_while_typing=true,tap_to_click=true}}})' >/dev/null 2>&1 || true
 fi
 
 exit 0
