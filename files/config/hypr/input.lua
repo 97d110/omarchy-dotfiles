@@ -17,6 +17,11 @@ hl.config({
       -- two-finger swipe moves the content, not the viewport. Pairs with the
       -- Mac-style Alt/Super swap above.
       natural_scroll = true,
+
+      -- Keep the touchpad active while keys are held (e.g. WASD in games),
+      -- instead of Hyprland's default of briefly disabling it during/after
+      -- any keypress.
+      disable_while_typing = false,
     },
   },
 })
