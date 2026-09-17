@@ -26,6 +26,34 @@ An ASUS ROG Strix G16 laptop (user `bebskigo`) and an older non-ASUS desktop
   deliberately **not** tracked - displays and layout differ per machine. Only
   `input.lua` and `bindings.lua` are shared.
 
+## Scoping a module to one machine
+
+There's no per-host directory or branch for this - a module that should only
+run on one machine (or one hardware class) guards itself with an early exit
+at the top of the script, and every other module still runs everywhere.
+Two patterns, depending on what's being distinguished:
+
+- **Exact hostname match**, when the split is "this specific machine, not the
+  other one" (`modules/80-personal-configs-deploy.sh`, bebski-home only):
+  ```sh
+  if [ "$(hostname)" != "bebski-home" ]; then
+    exit 0
+  fi
+  ```
+- **Hardware predicate**, when the split is about physical hardware rather
+  than which machine it happens to be - source the shared (not auto-run)
+  `modules/lib/hardware.sh` helper, as modules 35-37 do:
+  ```sh
+  source "$(dirname "${BASH_SOURCE[0]}")/lib/hardware.sh"
+
+  if ! is_asus_laptop; then
+    exit 0
+  fi
+  ```
+
+The two hostnames this repo currently branches on are `bebski-home` and
+`bebski-go`.
+
 Any config change made on this machine that should survive a reinstall (a
 Hyprland/git/gh setting, a shell dotfile, a systemd unit enabled, a CLI
 shim, an always-on Claude Code rule) must be reflected here before the task is
