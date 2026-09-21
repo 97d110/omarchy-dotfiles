@@ -6,6 +6,11 @@
 # files/config/hypr/bindings.lua  -> ~/.config/hypr/bindings.lua
 # files/home/.bashrc              -> ~/.bashrc
 # files/ssh/allowed_signers       -> ~/.ssh/allowed_signers
+#
+# files/etc/** is excluded: those are real system paths (e.g. /etc/udev/
+# rules.d/...), not $HOME mirrors. They're repo-owned source files that a
+# dedicated module (e.g. modules/34-dualsense-touchpad.sh) installs with
+# sudo instead - see that module for the pattern.
 set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -24,6 +29,11 @@ live_path_for() {
 
 while IFS= read -r -d '' src; do
   repo_rel="${src#"$FILES_DIR"/}"
+
+  case "$repo_rel" in
+    etc/*) continue ;;
+  esac
+
   live="$(live_path_for "$repo_rel")"
 
   if [ -L "$live" ] && [ "$(readlink "$live")" = "$src" ]; then

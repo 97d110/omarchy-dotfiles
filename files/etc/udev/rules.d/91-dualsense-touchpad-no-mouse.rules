@@ -1,0 +1,2 @@
+# Stop the DualSense controller's trackpad from acting as a mouse pointer.
+SUBSYSTEM=="input", ATTRS{name}=="Sony Interactive Entertainment DualSense Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
