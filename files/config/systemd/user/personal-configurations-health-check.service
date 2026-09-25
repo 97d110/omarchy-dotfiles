@@ -1,0 +1,10 @@
+[Unit]
+Description=Health-check and self-heal the bebski-home docker stack
+
+[Service]
+Type=oneshot
+# See personal-configurations-deploy.service for why PATH is explicit here:
+# timers can fire before the user manager's environment.d PATH additions
+# land, and docker/curl/jq must resolve regardless.
+Environment=PATH=%h/.local/share/mise/shims:/usr/local/sbin:/usr/local/bin:/usr/bin:%h/.local/bin
+ExecStart=%h/Work/personal-configurations/docker/bebski-home/scripts/health-check-heal.sh
