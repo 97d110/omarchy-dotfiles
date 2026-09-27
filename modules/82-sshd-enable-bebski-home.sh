@@ -11,3 +11,12 @@ fi
 
 sudo systemctl enable --now sshd.service
 echo "sshd.service enabled and running"
+
+if command -v ufw >/dev/null 2>&1 && sudo ufw status | grep -q "^Status: active"; then
+  if sudo ufw status | grep -qE "^22(/tcp)?\s"; then
+    echo "ufw: port 22 already allowed"
+  else
+    sudo ufw allow 22/tcp comment 'ssh (LAN access from bebski-go)'
+    echo "ufw: opened port 22/tcp"
+  fi
+fi
