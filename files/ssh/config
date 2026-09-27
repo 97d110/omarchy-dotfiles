@@ -1,0 +1,10 @@
+Host *
+	IdentityAgent ~/.1password/agent.sock
+
+# bebski-home (LAN, mDNS) - key-based access for browsing/copying files from
+# the home server (e.g. qBittorrent's `software` category save path at
+# /mnt/downloads/torrents/software) via Nautilus sftp:// or plain scp/rsync.
+Host bebski-home
+	HostName bebski-home.local
+	User bebskihome
+	IdentityFile ~/.ssh/id_ed25519_bebski_home

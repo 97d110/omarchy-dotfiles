@@ -2,6 +2,7 @@
 *.pem
 id_ed25519
 id_ed25519_github
+id_ed25519_bebski_home
 id_rsa
 hosts.yml
 *.bak.*
